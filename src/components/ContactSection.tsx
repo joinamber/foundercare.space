@@ -5,9 +5,13 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Send } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
 import { z } from "zod";
 import { Sprout } from "./Doodles";
+
+// Formspree form endpoint. Replace with your form ID from https://formspree.io
+// (the part after formspree.io/f/). Submissions are POSTed to this URL.
+const FORMSPREE_FORM_ID = "xlgyvpqy";
+const FORMSPREE_ENDPOINT = `https://formspree.io/f/${FORMSPREE_FORM_ID}`;
 
 // Form validation schema
 const contactSchema = z.object({
@@ -62,28 +66,26 @@ const ContactSection = () => {
     setIsSubmitting(true);
     
     try {
-      // 1. Store submission in Supabase
-      const { error: dbError } = await supabase
-        .from('contact_submissions')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            message: formData.message
-          }
-        ]);
-        
-      if (dbError) throw new Error(dbError.message);
-      
-      // 2. Send email notifications
-      const response = await supabase.functions.invoke('send-contact-email', {
-        body: formData
+      // Submit to Formspree
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
       });
-      
-      if (!response.data.success) {
-        throw new Error("Failed to send email notifications");
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        const message = data?.errors?.map((err: { message: string }) => err.message).join(", ");
+        throw new Error(message || "Failed to send message");
       }
-      
+
       toast.success("Message sent! We'll get back to you soon.");
       
       // Reset form after successful submission
