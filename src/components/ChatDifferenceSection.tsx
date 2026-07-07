@@ -1,57 +1,71 @@
 
-import { MessageSquare, UsersRound, PackagePlus } from "lucide-react";
+import FounderCard from "./FounderCard";
+import { WaveDivider, SpeechBubble, Heart, Sprout, Star } from "./Doodles";
+
+const CARDS = [
+  {
+    icon: SpeechBubble,
+    accentBg: "bg-founder-coral-soft",
+    accentText: "text-founder-coral",
+    title: "1:1 chats with founders",
+    body:
+      "Get matched with a peer for regular, judgment-free conversations — a steady space to think out loud and find your footing.",
+  },
+  {
+    icon: Heart,
+    accentBg: "bg-founder-sage-soft",
+    accentText: "text-founder-sage",
+    title: "Build your support network",
+    body:
+      "You're not alone. We help you build a circle of founders you can actually reach: trusted, informed, and genuinely in your corner.",
+  },
+  {
+    icon: Sprout,
+    accentBg: "bg-founder-gold-soft",
+    accentText: "text-founder-gold",
+    title: "Early founder kit",
+    body:
+      "Everything you need for your first team check-ins and 1:1s, plus early, practical guidance to keep your business — and your head — in a good place.",
+  },
+];
 
 const ChatDifferenceSection = () => {
   return (
-    <section className="py-20 bg-white">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-5 text-founder-dark font-display gradient-text">
-            A regular 1:1 chat can make a difference
+    <section className="relative bg-founder-cream-deep">
+      <WaveDivider fill="#F5F1E8" className="-mt-px" />
+
+      <div className="container mx-auto px-4 md:px-8 pb-20 md:pb-28">
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <span className="eyebrow mb-4">
+            <Star className="h-5 w-5 text-founder-gold" />
+            Why it matters
+          </span>
+          <h2 className="mb-6 text-founder-ink">
+            A single honest chat can change your whole week
           </h2>
-          <p className="text-founder-gray text-lg">
-            What we learned from past experiences: a quick conversation with a peer listener makes the day brighter, better. We can save quality of thought and knowledge, we also learn from each other. We can create unique opportunities when we grow together.
+          <p className="text-lg text-founder-muted leading-relaxed">
+            We&rsquo;ve learned this the hard way — one real conversation with someone who gets it
+            can turn a rough day around. When founders talk openly, we think more clearly, learn
+            from each other, and stumble into opportunities none of us would&rsquo;ve found alone.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-          <div className="bg-white p-8 rounded-xl shadow-md card-hover">
-            <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 bg-founder-accent/10 rounded-xl flex items-center justify-center">
-                <MessageSquare className="h-8 w-8 text-founder-accent" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold mb-4 text-center font-display">1:1 Chat with Founders</h3>
-            <p className="text-founder-gray text-center text-lg">
-              Create targeted 1:1 chats among founders to help them make connections and learn from the thought and peace of mind.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-xl shadow-md card-hover">
-            <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 bg-founder-green/10 rounded-xl flex items-center justify-center">
-                <UsersRound className="h-8 w-8 text-founder-green" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold mb-4 text-center font-display">Build Support Networks</h3>
-            <p className="text-founder-gray text-center text-lg">
-              You are not alone. Building support networks for all, or Peer, take informed and well-built founder networks.
-            </p>
-          </div>
-
-          <div className="bg-white p-8 rounded-xl shadow-md card-hover">
-            <div className="flex justify-center mb-6">
-              <div className="h-16 w-16 bg-founder-red/10 rounded-xl flex items-center justify-center">
-                <PackagePlus className="h-8 w-8 text-founder-red" />
-              </div>
-            </div>
-            <h3 className="text-2xl font-bold mb-4 text-center font-display">Early Founder Kit</h3>
-            <p className="text-founder-gray text-center text-lg">
-              Everything for Teai & 1v1 meetings that make a quick check-up with FounderCare to gain early financial advice to keep you sane.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {CARDS.map(({ icon: Icon, accentBg, accentText, title, body }) => (
+            <FounderCard key={title} className="flex flex-col">
+              <span
+                className={`flex h-16 w-16 items-center justify-center rounded-2xl ${accentBg} mb-6`}
+              >
+                <Icon className={`h-8 w-8 ${accentText}`} />
+              </span>
+              <h3 className="text-2xl mb-3 text-founder-ink">{title}</h3>
+              <p className="text-founder-muted text-lg leading-relaxed">{body}</p>
+            </FounderCard>
+          ))}
         </div>
       </div>
+
+      <WaveDivider fill="#FCFBF8" flip className="-mb-px" />
     </section>
   );
 };

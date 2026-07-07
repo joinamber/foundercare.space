@@ -1,43 +1,42 @@
 
-import { Button } from "@/components/ui/button";
-import { Zap } from "lucide-react";
+import JoinButton from "./JoinButton";
+import { Sprout, Star, Heart, SpeechBubble, Blob, Arcs } from "./Doodles";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 bg-founder-light">
-      <div className="container mx-auto px-4 md:px-8">
-        <div className="flex flex-col md:flex-row gap-8 items-start">
-          <div className="md:w-1/4">
-            <div className="bg-white p-4 rounded-xl shadow-md hover-lift overflow-hidden">
-              <img
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=300&q=80"
-                alt="Plant growing"
-                className="w-full h-auto rounded-lg transform transition-transform hover:scale-105"
-              />
+    <section id="about" className="relative py-20 md:py-28 bg-founder-cream overflow-hidden">
+      <Blob className="absolute top-10 -right-24 w-[360px] h-[360px] text-founder-plum-soft/50 motion-safe:animate-float-soft" />
+
+      <div className="container mx-auto px-4 md:px-8 relative">
+        <div className="grid lg:grid-cols-[0.9fr_1.1fr] gap-12 lg:gap-16 items-center">
+          {/* Illustrated growth panel replacing the old stock photo */}
+          <div className="relative order-last lg:order-first">
+            <div className="relative aspect-square max-w-md mx-auto rounded-blob bg-gradient-to-br from-founder-sage-soft via-white to-founder-coral-soft/70 shadow-soft border border-white/60">
+              <Sprout className="absolute inset-0 m-auto w-40 h-40 text-founder-sage motion-safe:animate-sway origin-bottom" />
+              <Star className="absolute top-10 right-12 w-9 h-9 text-founder-gold motion-safe:animate-float" />
+              <Heart className="absolute bottom-14 left-10 w-9 h-9 text-founder-coral motion-safe:animate-float-soft" />
+              <SpeechBubble className="absolute top-16 left-8 w-14 h-14 text-founder-plum motion-safe:animate-float" />
+              <Arcs className="absolute bottom-10 right-12 w-12 h-12 text-founder-terracotta motion-safe:animate-sparkle-pop" />
             </div>
           </div>
-          
-          <div className="md:w-3/4">
-            <h2 className="text-lg uppercase tracking-wider text-founder-accent font-semibold mb-1 animate-fade-in">WHO ARE WE?</h2>
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-founder-dark gradient-text">
-              Startup founders who are changing the world
-            </h3>
-            <div className="space-y-5 text-lg text-founder-gray">
-              <p>
-                Building a startup is a challenging journey. It involves discovering exceptional qualities and refining them until founders create businesses in areas of expertise and new ideas. 
-              </p>
-              <p>
-                With our 1-on-1 support network, it's critical for any founder to have friends, a community of people you can reach out to when things get difficult & the correct impactful advice.
-              </p>
-              <div className="pt-6">
-                <Button 
-                  className="bg-gradient-to-r from-founder-gradient-start to-founder-gradient-end hover:shadow-glow text-white font-medium py-6 px-8 rounded-lg text-base"
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Join Our Network
-                  <Zap className="ml-2 h-5 w-5" />
-                </Button>
-              </div>
+
+          <div>
+            <span className="eyebrow mb-4">
+              <Sprout className="h-5 w-5 text-founder-sage" />
+              Who we are
+            </span>
+            <h2 className="mb-6 text-founder-ink">
+              For the founders carrying it all
+            </h2>
+            <p className="text-lg text-founder-muted leading-relaxed">
+              Building a company asks everything of you — your focus, your energy, your whole
+              identity. It&rsquo;s exhilarating, and it can be quietly lonely. FounderCare gives
+              you a small circle of people who understand exactly what that feels like: peers to
+              think out loud with, celebrate the wins with, and lean on when the week gets heavy.
+              No one should navigate the hard parts alone.
+            </p>
+            <div className="mt-9">
+              <JoinButton />
             </div>
           </div>
         </div>

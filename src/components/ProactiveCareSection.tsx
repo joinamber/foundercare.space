@@ -1,66 +1,91 @@
 
 import { Check } from "lucide-react";
+import FounderCard from "./FounderCard";
+import JoinButton from "./JoinButton";
+import { Sprout, Heart, Star, Arcs } from "./Doodles";
+
+const CHECKLIST = [
+  "Bring passionate, curious founders together",
+  "Make space for honest 1:1 chats, wherever you're building from",
+  "Match you with a peer network that fits where you are right now",
+];
+
+const AUDIENCE = [
+  {
+    icon: Sprout,
+    accentBg: "bg-founder-sage-soft",
+    accentText: "text-founder-sage",
+    title: "Early founder",
+    body: "Just getting started on the journey.",
+  },
+  {
+    icon: Star,
+    accentBg: "bg-founder-gold-soft",
+    accentText: "text-founder-gold",
+    title: "Solo founder",
+    body: "Building and figuring it out on your own.",
+  },
+  {
+    icon: Heart,
+    accentBg: "bg-founder-coral-soft",
+    accentText: "text-founder-coral",
+    title: "Any founder",
+    body: "Anyone who could use good people in their corner.",
+  },
+];
 
 const ProactiveCareSection = () => {
   return (
-    <section id="services" className="py-20 bg-founder-beige">
+    <section id="services" className="py-20 md:py-28 bg-founder-cream">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-2xl md:text-4xl font-bold mb-6 text-founder-dark font-display uppercase">
-              IT ALL STARTS WITH <br /><span className="gradient-text">PROACTIVE CARE FOR EACH OTHER</span>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="lg:sticky lg:top-28">
+            <span className="eyebrow mb-4">
+              <Arcs className="h-5 w-5 text-founder-terracotta" />
+              How it works
+            </span>
+            <h2 className="mb-6 text-founder-ink">
+              It all starts with looking out for each other
             </h2>
-            
-            <p className="text-founder-gray text-lg mb-8">
-              Because a startup requires founders to be 100% all-in on their vision and ambitions, it takes tremendous energy to
-              not miss the purpose of motivation in place in our lives. In FounderCare we:
+            <p className="text-lg text-founder-muted leading-relaxed mb-8">
+              Going all-in on a vision takes enormous energy, and it&rsquo;s easy to lose sight of
+              why you started. FounderCare exists to keep that from happening. Here&rsquo;s what we
+              do:
             </p>
-            
-            <ul className="space-y-6">
-              <li className="flex items-center">
-                <div className="bg-founder-green/10 p-2 rounded-full mr-4 flex-shrink-0">
-                  <Check className="h-6 w-6 text-founder-green" />
-                </div>
-                <span className="text-lg">Strive to unite passionate and curious founders</span>
-              </li>
-              <li className="flex items-center">
-                <div className="bg-founder-green/10 p-2 rounded-full mr-4 flex-shrink-0">
-                  <Check className="h-6 w-6 text-founder-green" />
-                </div>
-                <span className="text-lg">Support 1:1 chats for remote founders to share strategic difficulties</span>
-              </li>
-              <li className="flex items-center">
-                <div className="bg-founder-green/10 p-2 rounded-full mr-4 flex-shrink-0">
-                  <Check className="h-6 w-6 text-founder-green" />
-                </div>
-                <span className="text-lg">Help you match built-in peer network support networks wherever they are</span>
-              </li>
+
+            <ul className="space-y-5">
+              {CHECKLIST.map((item) => (
+                <li key={item} className="flex items-start gap-4">
+                  <span className="mt-0.5 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-founder-sage-soft">
+                    <Check className="h-5 w-5 text-founder-sage" strokeWidth={3} />
+                  </span>
+                  <span className="text-lg text-founder-ink leading-relaxed">{item}</span>
+                </li>
+              ))}
             </ul>
+
+            <div className="mt-10">
+              <JoinButton />
+            </div>
           </div>
-          
-          <div>
-            <div className="bg-white p-8 rounded-xl shadow-md hover-lift mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-founder-dark font-display">EARLY FOUNDER</h3>
-              <p className="text-founder-gray text-lg">We're new to this startup journey</p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-xl shadow-md hover-lift mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-founder-dark font-display">SOLO FOUNDER</h3>
-              <p className="text-founder-gray text-lg">Who are building and navigating on their own</p>
-            </div>
-            
-            <div className="bg-white p-8 rounded-xl shadow-md hover-lift mb-8">
-              <h3 className="text-2xl font-bold mb-4 text-founder-dark font-display">ANY FOUNDER</h3>
-              <p className="text-founder-gray text-lg">Who is looking for support networks</p>
-            </div>
-            
-            <div className="mt-8 overflow-hidden rounded-xl shadow-lg hover-lift">
-              <img 
-                src="https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
-                alt="Plant" 
-                className="w-full h-auto transform transition-transform hover:scale-105"
-              />
-            </div>
+
+          <div className="space-y-6">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-founder-muted">
+              Who it&rsquo;s for
+            </p>
+            {AUDIENCE.map(({ icon: Icon, accentBg, accentText, title, body }) => (
+              <FounderCard key={title} className="flex items-center gap-5">
+                <span
+                  className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl ${accentBg}`}
+                >
+                  <Icon className={`h-7 w-7 ${accentText}`} />
+                </span>
+                <div>
+                  <h3 className="text-xl md:text-2xl text-founder-ink mb-1">{title}</h3>
+                  <p className="text-founder-muted text-lg">{body}</p>
+                </div>
+              </FounderCard>
+            ))}
           </div>
         </div>
       </div>

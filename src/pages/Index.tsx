@@ -6,12 +6,13 @@ import AboutSection from "@/components/AboutSection";
 import ChatDifferenceSection from "@/components/ChatDifferenceSection";
 import ProactiveCareSection from "@/components/ProactiveCareSection";
 import StatsSection from "@/components/StatsSection";
+import ClosingCTASection from "@/components/ClosingCTASection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-founder-cream">
       <Navbar />
       <HeroSection />
       <HeroContentSection />
@@ -27,6 +28,7 @@ const Index = () => {
       <div id="stats">
         <StatsSection />
       </div>
+      <ClosingCTASection />
       <div id="contact">
         <ContactSection />
       </div>
